@@ -1,0 +1,169 @@
+:root {
+  font-family: Arial, sans-serif;
+  color: #302d28;
+  background: #f5f0e8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --ink: #302d28;
+  --muted: #827d72;
+  --line: #e8e1d6;
+  --paper: #fffdf9;
+  --rust: #a64e32;
+  --rust-dark: #843b28;
+  --sage: #6d8061;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(ellipse at 87% 14%, rgba(226, 205, 167, .22), transparent 34rem),
+    #f5f0e8;
+}
+
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 3px solid rgba(166, 78, 50, .27);
+  outline-offset: 2px;
+}
+
+.page-shell { max-width: 1440px; margin: 0 auto; padding: 0 6.2%; }
+.topbar { height: 82px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(48,45,40,.09); }
+.brand { display: inline-flex; gap: 9px; align-items: center; color: var(--ink); font-size: 19px; font-weight: 700; letter-spacing: -.7px; text-decoration: none; }
+.brand-mark { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 50%; color: #fff7eb; background: var(--rust); font-size: 18px; }
+.brand-period { color: var(--rust); }
+.privacy-note { display: flex; align-items: center; gap: 8px; color: #777368; font-size: 12px; }
+.privacy-dot, .saved-dot { width: 7px; height: 7px; border-radius: 50%; background: #75916c; }
+
+.intro { padding: 50px 0 39px; text-align: center; }
+.eyebrow { margin: 0; color: var(--rust); font-size: 10px; font-weight: 700; letter-spacing: 1.65px; line-height: 1.5; text-transform: uppercase; }
+h1, h2, h3, p { margin-top: 0; }
+.intro h1 { margin: 12px 0 11px; font-family: "Playfair Display", Georgia, serif; font-size: clamp(38px, 5vw, 58px); font-weight: 500; letter-spacing: -1.5px; line-height: 1.09; }
+.intro h1 em { color: var(--rust); font-weight: 500; }
+.intro-copy { max-width: 430px; margin: 0 auto; color: var(--muted); font-size: 14px; line-height: 1.65; }
+
+.workspace { display: grid; grid-template-columns: 280px minmax(0, 1fr); min-height: 745px; margin-bottom: 36px; border: 1px solid #e8e0d4; border-radius: 15px; background: var(--paper); box-shadow: 0 12px 45px rgba(62,48,31,.055); overflow: hidden; }
+.story-rail { display: flex; flex-direction: column; border-right: 1px solid var(--line); background: #fcfaf5; }
+.rail-heading { display: flex; justify-content: space-between; align-items: center; padding: 24px 21px 20px; }
+.rail-heading h2 { display: flex; gap: 9px; align-items: center; margin: 7px 0 0; font-family: "Playfair Display", Georgia, serif; font-size: 20px; font-weight: 500; }
+.count-pill { display: grid; place-items: center; min-width: 21px; height: 21px; padding: 0 5px; border-radius: 12px; background: #eee8dd; color: #746d60; font: 600 10px Arial, sans-serif; }
+.icon-button { display: grid; place-items: center; border: 0; color: var(--rust); background: transparent; }
+.add-button { width: 31px; height: 31px; border: 1px solid #e6d6c9; border-radius: 50%; font-size: 21px; line-height: 1; }
+.add-button:hover { color: #fff; background: var(--rust); }
+.story-list { flex: 1; padding: 0 11px; }
+.story-card { display: block; width: 100%; margin: 0 0 5px; padding: 13px 12px; border: 1px solid transparent; border-radius: 8px; color: var(--ink); background: transparent; text-align: left; }
+.story-card:hover { background: #f4efe6; }
+.story-card.active { border-color: #ead9ca; background: #f7efe5; }
+.story-card-title { display: block; overflow: hidden; font-family: "Playfair Display", Georgia, serif; font-size: 15px; text-overflow: ellipsis; white-space: nowrap; }
+.story-card-meta { display: block; overflow: hidden; margin-top: 5px; color: #918a7f; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.story-card-empty { padding: 18px 11px; color: #938d82; font-size: 12px; line-height: 1.6; }
+.rail-footer { display: flex; justify-content: space-between; gap: 8px; padding: 14px 17px; border-top: 1px solid var(--line); }
+.text-button { padding: 5px 0; border: 0; color: var(--rust); background: transparent; font-size: 11px; font-weight: 600; }
+.text-button:hover { color: var(--rust-dark); text-decoration: underline; }
+
+.editor { min-width: 0; padding: 25px clamp(22px, 4vw, 58px) 42px; }
+.empty-state { display: flex; min-height: 675px; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; }
+.empty-art { position: relative; width: 188px; height: 150px; margin-bottom: 24px; }
+.sun-disc { position: absolute; top: 4px; left: 60px; width: 75px; height: 75px; border-radius: 50%; background: #e9c9a7; }
+.book-shape { position: absolute; bottom: 8px; left: 39px; width: 115px; height: 77px; border: 1px solid #c99d78; border-radius: 7px 11px 6px 6px; background: linear-gradient(90deg, #f8eee0 49%, #d2ae8a 50%, #fff8ec 52%); transform: rotate(-6deg); box-shadow: 2px 6px 0 #e7d6c0; }
+.flower { position: absolute; z-index: 1; color: var(--rust); font-size: 25px; }
+.flower-one { top: 45px; left: 23px; }
+.flower-two { top: 68px; right: 12px; color: #bc8550; font-size: 21px; }
+.flower-three { bottom: 5px; left: 16px; color: #809069; font-size: 18px; }
+.empty-state h2 { margin: 9px 0; font: 500 28px "Playfair Display", Georgia, serif; }
+.empty-state > p:not(.eyebrow) { max-width: 315px; margin-bottom: 22px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.primary-button { padding: 11px 17px; border: 0; border-radius: 6px; color: #fffaf3; background: var(--rust); font-size: 12px; font-weight: 600; }
+.primary-button:hover { background: var(--rust-dark); }
+.primary-button span { margin-left: 9px; }
+
+.story-editor { max-width: 780px; margin: 0 auto; }
+.editor-topline { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; }
+.saved-state { display: inline-flex; gap: 7px; align-items: center; color: #8b857a; font-size: 10px; }
+.saved-dot { width: 6px; height: 6px; }
+.quiet-button { padding: 5px 0; border: 0; color: #978c7e; background: transparent; font-size: 10px; }
+.quiet-button:hover { color: #a64030; text-decoration: underline; }
+.field-label { display: block; margin-bottom: 8px; color: #797367; font-size: 10px; font-weight: 700; letter-spacing: .75px; text-transform: uppercase; }
+.title-input { width: 100%; padding: 0 0 13px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; color: var(--ink); background: transparent; font: 500 clamp(24px, 3.2vw, 34px) "Playfair Display", Georgia, serif; letter-spacing: -.5px; }
+.title-input::placeholder { color: #c4bcb0; }
+.story-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; padding: 19px 0 22px; }
+.story-meta input { width: 100%; padding: 2px 0 7px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; color: var(--ink); background: transparent; font-size: 12px; }
+.story-meta input::placeholder { color: #b4ada1; }
+.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 10px; }
+.section-heading .field-label { margin-bottom: 4px; }
+.section-hint { margin: 0; color: #999286; font-size: 10px; }
+.word-count { flex: none; padding-bottom: 2px; color: #a49d92; font-size: 10px; }
+.transcript-input, .notes-input { display: block; width: 100%; resize: vertical; border: 1px solid #ece5dc; border-radius: 7px; color: #4a453e; background: #fffefa; font: 13px/1.75 Arial, sans-serif; }
+.transcript-input { min-height: 147px; padding: 13px 15px; }
+.notes-input { min-height: 76px; padding: 10px 12px; }
+textarea::placeholder { color: #b8b0a5; }
+.recording-row { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: 14px 0 18px; padding: 12px 14px; border: 1px solid #eee8dd; border-radius: 8px; background: #fcfaf6; }
+.recording-copy { display: flex; gap: 11px; align-items: center; }
+.record-icon { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; color: var(--rust); background: #f4e7d8; font-size: 15px; }
+.recording-copy strong { display: block; font-size: 11px; font-weight: 600; }
+.recording-copy p { margin: 3px 0 0; color: #969084; font-size: 9px; }
+.recording-actions { display: flex; align-items: center; gap: 12px; }
+.outline-button { padding: 7px 10px; border: 1px solid #e1cfc0; border-radius: 5px; color: var(--rust); background: transparent; font-size: 10px; font-weight: 600; }
+.outline-button:hover, .outline-button.recording { color: white; background: var(--rust); }
+.outline-button span { margin-right: 5px; font-size: 8px; }
+#audio-player { width: 100%; height: 35px; margin: -7px 0 15px; }
+.notes-label { margin-top: 2px; }
+.ai-card { margin-top: 23px; padding: 17px 19px 15px; border: 1px solid #e6e3d8; border-radius: 9px; background: linear-gradient(120deg, #f8f6ee, #faf8f2); }
+.ai-card-heading { display: flex; gap: 10px; align-items: center; }
+.ai-mark { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #e0d8c6; border-radius: 50%; color: #7d805e; background: #f1eee2; font-size: 16px; }
+.ai-card-heading .eyebrow { color: #858260; font-size: 9px; letter-spacing: 1.2px; }
+.ai-card-heading h3 { margin: 2px 0 0; font: 500 17px "Playfair Display", Georgia, serif; }
+.ai-description { margin: 12px 0 12px; color: #7f7b70; font-size: 10px; line-height: 1.6; }
+.model-row { display: flex; align-items: center; gap: 9px; margin-bottom: 11px; }
+.model-label { color: #888276; font-size: 10px; }
+.model-row select { max-width: 220px; padding: 5px 25px 5px 8px; border: 1px solid #e3ded2; border-radius: 5px; color: #635e53; background: #fffefa; font-size: 10px; }
+.refresh-button { width: 24px; height: 24px; border-radius: 4px; color: #89836e; font-size: 17px; }
+.refresh-button:hover { background: #ede9de; }
+.ai-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.ai-button { padding: 8px 11px; border: 1px solid #aeb39d; border-radius: 5px; color: #525c48; background: #f9f8f2; font-size: 10px; font-weight: 600; }
+.ai-button:hover:not(:disabled) { color: white; background: #6d8061; }
+.ai-button:disabled { cursor: wait; opacity: .6; }
+.ai-button span { margin-left: 7px; }
+.secondary-ai-button { border-color: #e0d9ca; color: #817765; }
+.ai-status { margin: 9px 0 0; color: #969084; font-size: 9px; line-height: 1.5; }
+.ai-status.error { color: #a74433; }
+.ai-result { margin-top: 12px; padding: 12px; border-left: 2px solid #86906f; border-radius: 0 5px 5px 0; color: #5a584d; background: rgba(255,255,255,.62); font-size: 11px; line-height: 1.65; white-space: pre-wrap; }
+.ai-result .text-button { display: inline-block; margin-top: 9px; }
+
+.page-footer { display: flex; justify-content: space-between; padding: 0 2px 22px; color: #9a9286; font-size: 10px; }
+.page-footer span:last-child span { padding-left: 4px; color: var(--rust); }
+.toast { position: fixed; right: 24px; bottom: 24px; z-index: 5; max-width: min(390px, calc(100vw - 32px)); padding: 12px 16px; border: 1px solid #ded5c7; border-radius: 7px; color: var(--ink); background: #fffdf8; box-shadow: 0 7px 24px rgba(48,45,40,.12); font-size: 12px; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity .2s, transform .2s; }
+.toast.visible { opacity: 1; transform: translateY(0); }
+
+[hidden] { display: none !important; }
+
+@media (max-width: 800px) {
+  .page-shell { padding: 0 4%; }
+  .workspace { grid-template-columns: 220px minmax(0, 1fr); }
+  .editor { padding-right: 24px; padding-left: 24px; }
+  .story-meta { gap: 14px; }
+}
+
+@media (max-width: 600px) {
+  .page-shell { padding: 0 15px; }
+  .topbar { height: 66px; }
+  .privacy-note { font-size: 10px; }
+  .intro { padding: 39px 0 29px; }
+  .intro h1 { font-size: 42px; }
+  .workspace { display: flex; flex-direction: column; min-height: 600px; }
+  .story-rail { order: 2; border-top: 1px solid var(--line); border-right: 0; }
+  .rail-heading { padding: 16px 18px 12px; }
+  .story-list { display: flex; gap: 7px; overflow-x: auto; padding: 0 13px 10px; }
+  .story-card { flex: 0 0 170px; margin: 0; }
+  .story-card-empty { min-width: 220px; padding: 8px 7px; }
+  .rail-footer { padding: 11px 17px; }
+  .editor { order: 1; padding: 21px 18px 29px; }
+  .empty-state { min-height: 470px; }
+  .story-meta { grid-template-columns: 1fr; gap: 16px; }
+  .recording-row { align-items: flex-start; flex-direction: column; }
+  .recording-actions { width: 100%; }
+  .ai-card { padding: 15px; }
+  .page-footer { gap: 12px; font-size: 9px; }
+}

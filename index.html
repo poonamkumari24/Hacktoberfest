@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f0e8" />
+    <meta
+      name="description"
+      content="A private, offline-first place to record and keep the stories that matter."
+    />
+    <title>Keepsake — stories stay close</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Keepsake home">
+          <span class="brand-mark" aria-hidden="true">✳</span>
+          <span>keepsake<span class="brand-period">.</span></span>
+        </a>
+        <div class="privacy-note"><span class="privacy-dot"></span> Your stories stay on this device</div>
+      </header>
+
+      <main>
+        <section class="intro">
+          <p class="eyebrow">A living family archive</p>
+          <h1>Keep the stories<br />that make us <em>us.</em></h1>
+          <p class="intro-copy">
+            A quiet place to listen, remember, and leave the next generation something real.
+          </p>
+        </section>
+
+        <section class="workspace" aria-label="Oral history notebook">
+          <aside class="story-rail">
+            <div class="rail-heading">
+              <div>
+                <p class="eyebrow">The archive</p>
+                <h2>Your stories <span id="story-count" class="count-pill">0</span></h2>
+              </div>
+              <button id="new-story" class="icon-button add-button" type="button" aria-label="Create a story">+</button>
+            </div>
+            <div id="story-list" class="story-list"></div>
+            <div class="rail-footer">
+              <button id="export-archive" class="text-button" type="button">Export archive <span aria-hidden="true">↗</span></button>
+              <button id="import-archive" class="text-button" type="button">Import archive <span aria-hidden="true">↙</span></button>
+              <input id="archive-file" type="file" accept="application/json,.json" hidden />
+            </div>
+          </aside>
+
+          <section id="editor" class="editor" aria-live="polite">
+            <div id="empty-state" class="empty-state">
+              <div class="empty-art" aria-hidden="true">
+                <span class="sun-disc"></span>
+                <span class="flower flower-one">✿</span>
+                <span class="flower flower-two">✿</span>
+                <span class="flower flower-three">✿</span>
+                <span class="book-shape"></span>
+              </div>
+              <p class="eyebrow">Every voice deserves a home</p>
+              <h2>Start with a story.</h2>
+              <p>Make room for a memory, a voice, a detail you don't want to lose.</p>
+              <button id="empty-new-story" class="primary-button" type="button">Begin a story <span aria-hidden="true">→</span></button>
+            </div>
+
+            <div id="story-editor" class="story-editor" hidden>
+              <div class="editor-topline">
+                <span class="saved-state"><span class="saved-dot"></span><span id="save-status">Saved on this device</span></span>
+                <button id="delete-story" class="quiet-button" type="button">Remove story</button>
+              </div>
+
+              <label class="field-label" for="story-title">The story</label>
+              <input id="story-title" class="title-input" type="text" maxlength="120" placeholder="A summer that changed everything" />
+              <div class="story-meta">
+                <label>
+                  <span class="field-label">Told by</span>
+                  <input id="story-narrator" type="text" maxlength="100" placeholder="Name of the storyteller" />
+                </label>
+                <label>
+                  <span class="field-label">When it happened</span>
+                  <input id="story-date" type="text" maxlength="80" placeholder="A year, a season, or a place in time" />
+                </label>
+              </div>
+
+              <div class="section-heading">
+                <div>
+                  <label class="field-label" for="story-transcript">In their own words</label>
+                  <p class="section-hint">Write or paste the story. Keep their voice, pauses, and details.</p>
+                </div>
+                <span id="word-count" class="word-count">0 words</span>
+              </div>
+              <textarea id="story-transcript" class="transcript-input" rows="8" placeholder="It was the summer of..."></textarea>
+
+              <div class="recording-row">
+                <div class="recording-copy">
+                  <span class="record-icon" aria-hidden="true">◉</span>
+                  <div>
+                    <strong>Keep the voice, too</strong>
+                    <p>Audio is saved only in this browser.</p>
+                  </div>
+                </div>
+                <div class="recording-actions">
+                  <button id="record-audio" class="outline-button" type="button"><span aria-hidden="true">●</span> Record</button>
+                  <button id="attach-audio" class="text-button" type="button">Choose audio</button>
+                  <input id="audio-file" type="file" accept="audio/*" hidden />
+                </div>
+              </div>
+              <audio id="audio-player" controls hidden></audio>
+
+              <label class="field-label notes-label" for="story-notes">Little things to remember</label>
+              <textarea id="story-notes" class="notes-input" rows="3" placeholder="The smell of orange blossoms. The song that was playing. What you want to ask next..."></textarea>
+
+              <section class="ai-card" aria-label="Local AI companion">
+                <div class="ai-card-heading">
+                  <div class="ai-mark" aria-hidden="true">✳</div>
+                  <div>
+                    <p class="eyebrow">A thoughtful companion</p>
+                    <h3>Listen a little deeper.</h3>
+                  </div>
+                </div>
+                <p class="ai-description">A local open model can suggest a gentle next question or gather the threads into a summary. It never makes up memories.</p>
+                <div class="model-row">
+                  <label class="model-label" for="model-select">Local model</label>
+                  <select id="model-select" aria-label="Choose local Ollama model">
+                    <option value="">Checking Ollama…</option>
+                  </select>
+                  <button id="refresh-models" class="icon-button refresh-button" type="button" aria-label="Refresh local models">↻</button>
+                </div>
+                <div class="ai-actions">
+                  <button id="ask-question" class="ai-button" type="button">Suggest a question <span aria-hidden="true">→</span></button>
+                  <button id="make-summary" class="ai-button secondary-ai-button" type="button">Make a summary <span aria-hidden="true">→</span></button>
+                </div>
+                <p id="ai-status" class="ai-status">AI runs through Ollama on this computer. No cloud account needed.</p>
+                <div id="ai-result" class="ai-result" hidden>
+                  <div id="ai-result-text"></div>
+                  <button id="add-ai-to-notes" class="text-button" type="button">Add to notes</button>
+                </div>
+              </section>
+            </div>
+          </section>
+        </section>
+      </main>
+
+      <footer class="page-footer">
+        <span>Made for the stories that outlive us.</span>
+        <span>Open source at heart <span aria-hidden="true">✳</span></span>
+      </footer>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </div>
+  </body>
+</html>
